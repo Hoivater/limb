@@ -1,7 +1,21 @@
 <?php
 namespace limb\app\form;
-
 use limb\app\base as Base;
+	/**
+	 * 
+	 */
+	// class ArticleTable
+	// {
+		
+	// 	function __construct()
+	// 	{
+	// 		echo "Клссс";
+	// 	}
+	// 	public static function insertFieldCom($ef)
+	// 	{
+	// 		echo "fr";
+	// 	}
+	// }
 
 	class FormBase
 	{	
@@ -20,6 +34,13 @@ use limb\app\base as Base;
 			// print_r($this -> ini_new);
 			file_put_contents('../base/db.ini', $this -> ini_new);
 			return true;
+		}
+		public function newRandomFields()
+		{
+			$ini = parse_ini_file('../base/db.ini');
+			$table_name = $this -> data["name_db"];
+			$class_name = 'limb\\code\\site\\'.ucfirst(str_replace($ini["fornameDB"], "", $table_name))."Table";
+			$obj = $class_name::insertFieldLimb($this -> data['count_fields']);
 		}
 		public function ImportBD()
 		{

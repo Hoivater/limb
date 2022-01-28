@@ -1,17 +1,17 @@
 <?
-namespace hoivater\dtbs\limb\site;
-use hoivater\dtbs\base as Base; #для работы с базой данный
+	namespace limb\code\site;
+	use limb\app\base as Base;#для работы с валидатором и бд
 	/**
 	 * работа с данными таблицы
 	 *
 	 */
 	class ArticleTable
 	{
-		public $tmpltArticle = ['%id%', '%name%', '%link%', '%description%', '%tags%', '%category%', '%foto%', '%visible%', '%popular%', '%count_commentary%'];//массив из таблиц
+		public $tmpltArticle = ['%id%', '%name%', '%link%', '%description%', '%tags%', '%category%', '%foto%', '%visible%', '%popular%', '%count_commentary%', '%date%'];//массив из таблиц
 		public $resultArticle;//финишная сборка для шаблона для возврата в _Page
 		public $name = '3289t_article';//имя таблицы которое используется по умолчанию
-		public $table_key = "`id`, `name`, `link`, `description`, `tags`, `category`, `foto`, `visible`, `popular`, `count_commentary`";
-		#public $replace = [$id, $name, $link, $description, $tags, $category, $foto, $visible, $popular, $count_commentary];
+		public $table_key = "`id`, `name`, `link`, `description`, `tags`, `category`, `foto`, `visible`, `popular`, `count_commentary`, `date`";
+		#public $replace = [$id, $name, $link, $description, $tags, $category, $foto, $visible, $popular, $count_commentary, $date];
 
 
 		public function __construct()
@@ -39,6 +39,16 @@ use hoivater\dtbs\base as Base; #для работы с базой данный
 			#$result = $ri -> insert($value);
 
 			#code...
+		}
+
+		public static function insertFieldLimb($value)
+		{
+			#$value - количество полей, которые необходимо 
+			$table = new ArticleTable();
+			// print_r($table -> tmpltArticle);
+			
+			#
+			Base\control\Generate::generateInt();
 		}
 	}
 ?>

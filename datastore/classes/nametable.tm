@@ -1,6 +1,6 @@
 <?
-namespace hoivater\dtbs\limb\site;
-use hoivater\dtbs\base as Base; #для работы с базой данный
+	namespace limb\code\site;
+	use limb\app\base as Base;#для работы с валидатором и бд
 	/**
 	 * работа с данными таблицы
 	 *

@@ -7,7 +7,7 @@ use limb\app\worker as Worker;
 use limb\app\base\control as Control;
 require "../../autoload.php";
 
-	class FormRoute extends FormBase
+	class FormPublicRoute extends FormBase
 	{
 
 		private $result;
@@ -33,7 +33,7 @@ require "../../autoload.php";
 			}
 			elseif($name_form == 'newFields')
 			{
-				$this -> newRandomFields();
+				$this -> result = $this -> ImportBD();
 			}
 			elseif($name_form == 'newTable')
 			{

@@ -1,4 +1,7 @@
 <h4 class="text-start">Таблица: %name_db% <a href = '/delete_table/%name_db%'>Удалить таблицу</a></h4>
+<h5>Заполнить таблицу, количество ячеек: 
+	<form name = 'newfields' action="/app/form/FormRoute.php" method = 'post'>
+		<input type = 'text' value = '%name_db%' name = 'name_db' class='hidden'> <input type = 'number' style='width:70px;border-radius:5px;border:1px solid #DEE2E6;' class = 'p-1 mt-1' name = 'count_fields'> <button type = 'submit' name = 'nameForm' value = 'newFields' class = 'btn btn-success pt-1'>Добавить произвольные поля</button></form></h5>
 <div class="table_template">
 <table class="table table-bordered">
 	<tr>

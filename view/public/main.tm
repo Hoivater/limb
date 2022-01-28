@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/de9f65bcf0.js" crossorigin="anonymous"></script>
 
     <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon">
-	<title>DTBS</title>
+	<title>LIMB</title>
 
 </head>
 <body>
@@ -33,7 +33,7 @@
 				<h1 id = "php">PHP 8.0</h1>
 				<h1 id = "bootstrap">BOOTSTRAP 5</h1>
 				<h1 id = "mysqli">MYSQLI 8.0</h1>
-				<h1 id = "js">JQUERY 3.6.0</h1>
+				<h1 id = "js">JQUERY</h1>
 				<h3 id = "say">"Вместо этой страницы мог бы быть Ваш сайт"</h3>
 			</div>
 		</div>
