@@ -15,7 +15,7 @@ use limb\app\base as Base;
 			return $result;
 		}
 		#генерируется заданная длинна из слов
-		public static function varchargenerate($num)
+		public static function varchargenerate()
 		{
 
 			return $result;

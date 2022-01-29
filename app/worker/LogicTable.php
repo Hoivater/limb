@@ -92,6 +92,7 @@
 			$tmplt = "";
 			$replace = "";
 			$for_table_key = "";
+
 			for ($i=0; $i <= count($this -> fields_array)-1; $i++) {
 				if($i != count($this -> fields_array)-1){
 					$tmplt .= "'%".$this -> fields_array[$i]."%', ";
@@ -105,7 +106,7 @@
 				}
 			}
 			//[название таблицы(оно же название класса), ]
-			return [$this -> table_name, $tmplt, $replace, $for_table_key];
+			return [$this -> table_name, $tmplt, $replace, $for_table_key, $this -> fields_parametr];
 		}
 		public function getResult()
 		{
