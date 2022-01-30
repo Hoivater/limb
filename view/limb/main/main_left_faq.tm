@@ -18,8 +18,4 @@
   <a href="/faqs/work_with_database/" class="list-group-item list-group-item-action">Запросы к базе данных</a>
   <a href="/faqs/new_project/" class="list-group-item list-group-item-action">Создание проекта</a>
 
-
-
-
-
 </div>
