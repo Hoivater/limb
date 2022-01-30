@@ -1,7 +1,7 @@
 <?
 	namespace limb\code\site;
 	use limb\app\base as Base;#для работы с валидатором и бд
-	use limb\app\control as Control;
+	use limb\app\base\control as Control;
 	/**
 	 * работа с данными таблицы
 	 *
@@ -35,11 +35,16 @@
 		#метод добавляющий данные в таблицу, value - строка следующего вида
 		#NULL, '".$this -> title."', '".$this -> keywords."', '".$this -> description."'
 		#функция для автозаполнения созданной таблицы, можно корретировать функции, например выбрать fotogenerate /в будущем =)
-		public function insertFieldCom($value)
+		public static function insertFieldLimb($num)
 		{
+			$name77656756 = '_TABLENAME_';
+			$table_key757658 = "_FORTABLEKEY_";
+			for($i = 0; $i <= $num-1; $i++)
+			{
 _NEWFIELDSCODE_
-			$ri = new Base\RedactionInq($this -> name, $this -> table_key);
+			$ri = new Base\RedactionInq($name77656756, $table_key757658);
 			$result = $ri -> insert($value);
+			}
 			#code...
 		}
 	}

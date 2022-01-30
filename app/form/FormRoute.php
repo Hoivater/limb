@@ -79,7 +79,7 @@ require "../../autoload.php";
 		session_start();
 		$_SESSION["message"] = $fRoute -> result();
 		
-		// header('Location: '.$_SERVER['HTTP_REFERER']);
+		header('Location: '.$_SERVER['HTTP_REFERER']);
 	}
 
 ?>

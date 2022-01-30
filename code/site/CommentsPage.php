@@ -7,7 +7,7 @@
 	 * -проверка подключения к бд(этот статус выводится на всех страницах);
 	 * -проверка общих настроек;
 	 */
-	class ArticlePage extends ArticleTable
+	class CommentsPage extends CommentsTable
 	{
 		use tPage;
 

@@ -50,7 +50,7 @@ class Route
 				$_SESSION['numpage'] = 1;
 			}
 		}
-		$this -> routeLimb();//ищем в "лимбе" адрес и обрабатываем
+		$this -> routeLimb();#Limb работа с таблицами
 		// $this -> routePublicLimb(); #ваш проект
 
 	}
