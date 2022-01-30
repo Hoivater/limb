@@ -37,6 +37,16 @@ table_name = "standart";
 </pre>
 </div>
 <p>Далее - вариативно, в зависимости от ваших нужд.</p>
-
+<div class = "code_ex">
+<pre>
+... = int(num);
+... = float(num);
+... = double(num);
+... = boolean;
+... = char;
+... = varchar(num);
+... = text;
+</pre>
+</div>
 
 <h3>Способ 3. Импорт, не рекомендуется</h3>
