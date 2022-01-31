@@ -5,7 +5,7 @@ namespace limb\app\modules\auth;
  */
 class AuthAccess
 {
-	private $roles = ['admin', 'user'];
+	private $roles = ['admin', 'user', 'noauth'];
 	private $html;
 	private $result;
 	private $auth;
