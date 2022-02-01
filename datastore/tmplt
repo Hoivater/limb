@@ -14,3 +14,73 @@
 <p>Внутри ограничений start - end используются стандартные методы обертки заменяемых элементов, то есть: '%'.</p>
 <p>У первой, как и у второй есть своя зона видимости, в случае если авторизация предусмотрена.
 	Авторизация предусмотрена разных уровней. Работа с шаблоном в случае авторизации описана в <a href = '/faqs/authinfo/'>статье про авторизацию</a>.</p>
+
+<h3 class="text-center">HTML внедрееение =)</h3>
+<h4 class="text-center">Настройка статической части страниц</h4>
+<p>Первое что мы делаем, так это пишем/верстаем страницы, предположительно они хранятся в папке view/public.</p>
+<p>
+	Второе, чем мы заняты - так это выделением статической части страницы и... изменяемой на разных этапах.
+</p>
+<p>Все, что изменяется мы выносим в отдельные папки с яркими названиями, характеризующими страницу. Все что выносить не нужно также заменяем на шаблонную штуку, которая совпадает с названием столбца в бд: %name%.</p>
+<p>
+	Поскольку логика в том, что есть "повторяющиеся" элементы и "статичные", то отслеживаем повторяющиеся на каждой странице, и обносим их следующим выражением с присвоением какого-либо имени: start_repeat_. Если у нас на сайте присутсвует авторизация, то выделяем "роли": %startadmin%...%endadmin%
+</p>
+
+<div class = "code_ex">
+<pre>
+&lt;div class=&quot;col-md-4 mb-3&quot;&gt;
+	&lt;h3 class='mt-3 '&gt;Меню&lt;/h3&gt;
+	&lt;div class=&quot;list-group mt-3&quot;&gt;
+
+	^start_repeat_menu^
+	&lt;a href=&quot;%link%&quot; class=&quot;list-group-item-action&quot;&gt;%name%&lt;/a&gt;
+	^end_repeat_menu^
+
+	%startadmin%
+	  &lt;a href=&quot;/&quot; class=&quot;list-group-item-action&quot;&gt;Добавить пункт меню&lt;/a&gt;
+	%endadmin%
+
+	%startnoauth%
+	  &lt;a href=&quot;/registration&quot; class=&quot; list-group-item-action&quot;&gt;Регистрация&lt;/a&gt;
+	  &lt;a href=&quot;/auth&quot; class=&quot; list-group-item-action&quot;&gt;Войти&lt;/a&gt;
+	%endnoauth%
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+<p>
+	Дальше мы вносим полученные %...% в трейт tPage в tmplt = ["%...%", ....]. Вносим только те элементы шаблона, которые встречаются одинаково на всех страницах сайта и исключая те, которые влияют на "роли" и ненаходятся в повторяющем цикле. В примере p1limb это будет лишь %header_text%.
+</p>
+<p>
+	В том случае, если у нас есть что-то повторяющееся от страницы к странице вроде меню: ^start_repeat_menu^ .... ^end_repeat_menu^, ТО:
+	</p>
+	<p>
+		- В переменную replacerepeat - записываем все имена повторяющиеся со страницы:
+	</p>
+
+<div class = "code_ex">
+<pre>
+	public $repeatreplace = ["menu"];
+	public $menu = ["%name%", "%link%"];
+</pre>
+</div>
+	<p>- Создаем новое свойство: $menu_tmplt; Куда записываем массив с %...%, наподобие tmplt.</p>
+<p>
+В классе mainTable создаем свойство для изменяемого параметра страницы, да и массив с остальными параметрами, которые нужно включить туда.
+</p>
+
+<div class = "code_ex">
+<pre>
+class MainTable
+{
+	protected $left_content;
+	protected $main_tmplt = ["%title%", "%description%"];
+	protected $main_repeat_tmplt = ["%left_content%"];
+
+	public function __construct()
+	{
+		$this -> left_content = file_get_contents(__DIR__."/../.....left_content.tm");
+	}
+	...
+		</pre>
+</div>
