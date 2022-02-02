@@ -84,3 +84,25 @@ class MainTable
 	...
 		</pre>
 </div>
+
+
+<div class = "code_ex">
+<pre>
+$template = [
+	"norepeat" => $this -> main_tmplt,
+	"repeat" => [
+		"norepeat" => ["%name%", "%link%", "%description%", "%date_creation%"],
+		"repeat" => [
+					"norepeat" => ["%name2%", "%link2%", "%description2%", "%date_creation2%"],
+					"repeat" => false,
+					"folder" => false,
+					"replace_to" => ["%ent%"]
+				],
+		"folder" => "muy",
+		"replace_to" => ["%content%"]
+	],
+	"folder" => "main",
+	"replace_to" => ["%left_content%"]
+];
+</pre>
+</div>
