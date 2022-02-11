@@ -92,25 +92,25 @@ class Route
 				}
 				elseif($route_arr[0] == "registration")
 				{
-					$html = new Modules\Auth\AuthPage(false);
+					$html = new Modules\auth\AuthPage(false);
 					$html -> Registration();				
 				}
 				elseif($route_arr[0] == "auth")
 				{
 					if(isset($route_arr[1])){
 						if($route_arr[1] == "newpassword"){
-							$html = new Modules\Auth\AuthPage(false);
+							$html = new Modules\auth\AuthPage(false);
 							$html -> NewPassword();	
 						}
 						else
 						{
-							$html = new Modules\Auth\AuthPage(false);
+							$html = new Modules\auth\AuthPage(false);
 							$html -> Auth();					
 						}
 					}
 					else
 					{
-						$html = new Modules\Auth\AuthPage(false);
+						$html = new Modules\auth\AuthPage(false);
 						$html -> Auth();					
 					}	
 				}

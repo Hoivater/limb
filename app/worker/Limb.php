@@ -78,7 +78,7 @@
 
 			if($auth !== "noauth")
 			{
-				$au = new Modules\Auth\AuthAccess($html, $auth);
+				$au = new Modules\auth\AuthAccess($html, $auth);
 				$html = $au -> getResult();
 			}
 			return $html;

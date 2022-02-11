@@ -36,7 +36,7 @@ body{
 	right: 0;
 }
 #one{
-	background-image: url(/resourse/visible/logo.png); /* Путь к фоновому рисунку */
+	background-image: url(/resourse/visible/logo.svg); /* Путь к фоновому рисунку */
 	background-position: center center; /* Положение фона */
     background-repeat: no-repeat; /* Отменяем повторение фона */
     background-size: 250px;

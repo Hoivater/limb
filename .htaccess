@@ -4,8 +4,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*) /?%{QUERY_STRING}
 	
-#Запрещаем просмотр содержимого папки
-Options All -Indexes
 
 <FilesMatch "(.(sql|ini|log|inc|php|tm)|~)$">
 Order allow,deny

@@ -24,62 +24,6 @@
 
 </head>
 <body>
-	<style>
-		body{
-	background: #DFEFFF;
-}
-.page{
-	height: 100vh;
-}
-.main .names{
-	background: #fff;
-}
-#php{
-	background: #fff;
-	position: absolute;
-}
-#mysqli{
-	background: #fff;
-	position: absolute;
-	bottom: 50vh;
-	left: 0;
-}
-#js{
-	background: #fff;
-	position: absolute;
-	bottom: 50vh;
-	right: 0;
-}
-#say{
-	background: #fff;
-	position: absolute;
-	bottom: 0vh;
-	right: 50wh;
-}
-#bootstrap{
-	background: #fff;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-#one{
-	background-image: url(/resourse/visible/logo.png); /* Путь к фоновому рисунку */
-	background-position: center center; /* Положение фона */
-    background-repeat: no-repeat; /* Отменяем повторение фона */
-    background-size: 250px;
-}
-#one h1 span{
-	color: red;
-}
-#one h1{
-	font-size: 400%;
-}
-#two{
-	background: #303841;
-	color: #D7DDE8;
-	font-size: 130%;
-}
-	</style>
 	<div class="container-fluid main p-0 m-0">
 
 
@@ -101,16 +45,13 @@
 				</p>
 				<ul>
 					<li>
-						Внутренний FAQ
-					</li>
-					<li>
 						Создание, редактирование и удаление таблиц MYSQLI. Все происходит исключительно через веб-интерфейс.
 					</li>
 					<li>
 						Автоматическое создание классов для работы с созданными таблицами и данными, с автоматическим подключением необходимых классов.
 					</li>
 					<li>
-						Автоматическое заполнение ваших таблиц "рыбой-текстом", в соответствии с типом столбца.
+						Автоматическое заполнение ваших таблиц "рыбой-текстом", в соответствии с типом столбца и вашими потребностями.
 					</li>
 					<li>
 						Шаблонизатор с возможностью простого контроля за правами видимости различных блоков страницы
