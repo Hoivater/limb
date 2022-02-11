@@ -1,66 +1,54 @@
-header, footer{
-	background:#BEE6C8;
-	color: #2F362C;
+body{
+	background: #DFEFFF;
 }
-.logo{
-	width: 50px;
-	float: left;
+.page{
+	height: 100vh;
 }
-a: hover{
-	color: green;
+.main .names{
+	background: #fff;
 }
-a{
-	color: #2F362C;
-	text-decoration: none;
+#php{
+	background: #fff;
+	position: absolute;
 }
-.img_article{
-	width: 40%;
-	min-width: 250px;
-	margin: 0 auto;
+#mysqli{
+	background: #fff;
+	position: absolute;
+	bottom: 50vh;
+	left: 0;
 }
-p{
-	text-align: justify;
+#js{
+	background: #fff;
+	position: absolute;
+	bottom: 50vh;
+	right: 0;
 }
-.card p{
-	font-size: 110%;
+#say{
+	background: #fff;
+	position: absolute;
+	bottom: 0vh;
+	right: 50wh;
 }
-.commentary p{
-	font-size: 90%;
+#bootstrap{
+	background: #fff;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
-.commentary{
-	color: blue;
+#one{
+	background-image: url(/resourse/visible/logo.png); /* Путь к фоновому рисунку */
+	background-position: center center; /* Положение фона */
+    background-repeat: no-repeat; /* Отменяем повторение фона */
+    background-size: 250px;
 }
-.avatar{
-	width: 70px;
-	float: left;
+#one h1 span{
+	color: red;
 }
-.name_author{
-	/*padding: 5px;*/
-	color: #2F362C;
+#one h1{
+	font-size: 400%;
 }
-.clean{
-	clear: both;
-}
-.one_commentary{
-	margin-left: 10px;
-}
-.two_commentary{
-	margin-left: 40px;
-}
-.address a{
-	color: #2F362C;
-	font-style: italic;
-}
-.cardLink{
-	color: #2F362C;
-}
-.warn{
-	padding: 10px;
-	padding-left: 80px;
-	font-size: 140%;
-	background: #BEE6C8;
-	border-radius: 10px;
-	background-image: url("/resourse/visible/warn.svg");
-	background-repeat: no-repeat;
-	background-size: auto 100%;
+#two{
+	background: #303841;
+	color: #D7DDE8;
+	font-size: 130%;
 }

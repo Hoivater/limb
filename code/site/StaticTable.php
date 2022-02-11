@@ -1,8 +1,6 @@
 <?php
 	
 namespace limb\code\site;
-use limb\app\worker as Worker;
-use limb\app\base as Base; #для работы с базой данный
 
 	// require "base/dataBase.php";
 	/**
@@ -18,43 +16,9 @@ use limb\app\base as Base; #для работы с базой данный
 		}
 
 
-		protected function Limb($auth = "noauth")#сборщик страницы
-		{
-			$limb = new Worker\Limb();
+		//метод добавляющий данные в таблицу
 
-
-			#################формируем data для полной сборки страницы
-				#получаем массив данных
-			
-			$si2 = new Base\SearchInq("3289t_menu");
-			$si2 -> selectQ();
-			$si2 -> orderAscQ();
-			$menu = $si2 -> resQ(); //массив со всеми записями
-				#получаем массив данных
-
-			$name = Base\Control\Control::NameUser();
-
-
-			$page_ini = parse_ini_file(__DIR__."/../../view/page.ini");
-
-			$replace_main_tmplt = ["header_text" => "LIMB", "name_user" => $name];
-
-			$template = [
-				"norepeat" => ["%header_text%", "%name_user%"],
-				"repeat" => ["menu"],
-			];
-			$data = [
-				"norepeat" => $replace_main_tmplt,
-				"repeat" => [$menu],
-			];
-			#################формируем data для полной сборки страницы
-
-
-			$render = $limb -> TemplateMaster($template, $data, $auth, $this -> html);
-
-			
-			return $render;
-		}
+		//метод достаюший все из таблицы
 
 	}
 

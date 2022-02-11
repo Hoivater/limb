@@ -8,8 +8,6 @@ use limb\app\base as Base;
 	 */
 	class StaticPage extends StaticTable
 	{
-		use tPage;
-
 		private $control;
 		private $html_static_page;// собранный итого код неизменяемой части страницы
 		private $setting;
@@ -18,19 +16,17 @@ use limb\app\base as Base;
 		{
 			// session_start();
 			// if(isset($_SESSION['connect'])) unset($_SESSION['connect']);
-			$this -> html = file_get_contents(__DIR__."/../../view/public/layouts/main.tm");
+			$html = file_get_contents(__DIR__."/../../view/public/main.tm");
 
 			$this -> control = new Base\control\Control();
-
+			$this -> html_static_page = $html;
 			$this -> controlConnectDB();
 
 			$this -> setting = parse_ini_file('setting.ini');
 
 			$connect = $_SESSION['connect'];
 
-			
-			$auth = Base\Control\Control::IsRules();
-			$this -> html_static_page = $this -> Limb($auth);
+			$this -> html_static_page = $html;
 
 		}
 

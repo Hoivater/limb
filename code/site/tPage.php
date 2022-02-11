@@ -5,6 +5,6 @@ namespace limb\code\site;
 	trait tPage{
 		public $html;//основная заготовка сайта
 		public $page;//результат работы класса
-		public $tmplt  = ["%header_text%"];//массив для единичной замены staticPage
+		public $tmplt  = ["%____________%", "%____________%", "%____________%"];//массив для замены staticPage
 	}
 ?>

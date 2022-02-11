@@ -31,31 +31,7 @@
 					$html = $this -> ReplaceStandart($template["repeat"][$i], $data["repeat"][$i], $html);
 				}
 			}
-			// if(isset($template["replace_standart"]) && is_array($template["replace_standart"]))
-			// {
-			// 	if(isset($template["replace_standart"][0]["name"]) && isset($template["replace_standart"][0]["folder"]))
-			// 	{
-			// 		for($i = 0; $i < count($template["replace_standart"]); $i++)
-			// 		{
-			// 			$html = $this -> ReplaceStandartInternal($template["replace_standart"][$i]["name"], $data["replace_standart"][$i], $html, $template["replace_standart"][$i]["folder"]);
-			// 		}
-			// 	}
-			// 	else
-			// 	{
-			// 		for($i = 0; $i < count($template["replace_standart"]); $i++)
-			// 		{
-			// 			$html = $this -> ReplaceStandart($template["replace_standart"][$i], $data["replace_standart"][$i], $html);
-			// 		}
-			// 	}
-			// }
-
-			// {
-			// 	for($i = 0; $i < count($template["repeat_tm"]); $i++)
-			// 	{
-			// 		echo count($data["repeat_tm"][0]);
-
-			// 	}
-			// }
+			
 			#INTERNAL
 			if(isset($template["internal"][0]))
 			{
@@ -90,29 +66,10 @@
 								
 								$modules = $this -> ReplaceInternalWithTM($template["internal"][$i], $data_internal_i, $template["repeat_tm"], $data["repeat_tm"]);
 								$html = Control\Necessary::standartReplace("%".$template["internal"][$i]["name"]."%", $modules, $html);
-
-							// }
-							// else
-							// {
-							// 	// $modules = $this -> ReplaceInternalWithTM($template["internal"][$i], $data["internal"], $template["repeat_tm"], $data["repeat_tm"]);
-							// 	$modules = $this -> NoReplaceInternalWithTM($template["internal"][$i], $data, $template["repeat_tm"], $data["repeat_tm"][$i]);
-							// 	$html = Control\Necessary::standartReplace("%".$template["internal"][$i]["name"]."%", $modules, $html);								
-							// }
 						}
 
 				}
 			}
-
-			// if(isset($template["replace_internal"]) && is_array($template["replace_internal"]))
-			// {
-			// 	for($i = 0; $i < count($template["replace_internal"]); $i++)
-			// 	{
-			// 		$modules = $this -> ReplaceInternal($template["replace_internal"][$i], $data["replace_internal"][$i]);
-			// 		$html = Control\Necessary::standartReplace("%".$template["replace_internal"][$i]["name"]."%", $modules, $html);
-			// 	}
-			// }
-
-
 			#NOREPEAT
 			if(isset($template["norepeat"]) && is_array($template["norepeat"]))
 			{

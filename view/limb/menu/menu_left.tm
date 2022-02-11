@@ -6,6 +6,6 @@
 	<li><a href="/import/" class="nav-link px-2 link-dark">Импорт базы данных</a></li>
 	<!-- <li><a href="/export/" class="nav-link px-2 link-dark">Экспорт</a></li>  -->
 	<li><a href="/setting/" class="nav-link px-2 link-danger">Настройки</a></li>
-	<li><a href="/faqs/" class="nav-link px-2 link-dark">FAQs</a></li>
+	<li><a href="https://limb.website" class="nav-link px-2 link-dark">FAQs</a></li>
 	</ul>
 </div>

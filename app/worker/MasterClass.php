@@ -23,7 +23,7 @@
 			$this -> type_fields = $type_fields;
 
 		}
-		#type_fields = Array ( [0] => this_id [1] => varchar(255) [2] => varchar(255) [3] => varchar(255) [4] => text [5] => text [6] => varchar(255) [7] => int(10) [8] => int(10) [9] => int(10) [10] => this_date ) ) Array ( [0] => this_id [1] => varchar(255) [2] => varchar(255) [3] => varchar(255) [4] => text [5] => text [6] => varchar(255) [7] => int(10) [8] => int(10) [9] => int(10) [10] => this_date )
+		
 		public function addTablePageCl()
 		{
 			$result = "";
