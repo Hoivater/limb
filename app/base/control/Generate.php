@@ -47,7 +47,7 @@ use limb\app\base as Base;
 			for($i = 0; $i <= count($dictionary_arr)-1; $i++)
 			{
 				$result .= " ".$dictionary_arr[$i];
-				$length = strlen($result);
+				$length = mb_strlen($result);
 				if($length >= $min && $length <= $max)
 				{
 					break;
@@ -65,11 +65,14 @@ use limb\app\base as Base;
 		    return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
 		}
 		#генерируется текст размером от 200 до 900 символов из слов
-		public static function textgenerate()
+		public static function textgenerate($num = "no")
 		{
-			$num = rand(200, 900);
-			$min = $num - 10;
-			$max = $num + 10;
+			if($num == "no")
+			{
+				$num = rand(200, 900);
+			}
+			$min = $num - 20;
+			$max = $num + 20;
 			$dictionary = file_get_contents(__DIR__."/../../../datastore/word/russian.tm");
 			$dictionary_arr = explode(", ", $dictionary);
 			shuffle($dictionary_arr);
@@ -85,7 +88,7 @@ use limb\app\base as Base;
 				{
 					$result .= " ".$dictionary_arr[$i];
 				}
-				$length = strlen($result);
+				$length = mb_strlen($result);
 
 				if($length >= $min && $length <= $max)
 				{
@@ -96,7 +99,6 @@ use limb\app\base as Base;
 					$result = mb_substr($result, 0, $max-4);
 					break;
 				}
-
 			}
 			return  self::mb_ucfirst(trim($result));
 		}
@@ -126,13 +128,12 @@ use limb\app\base as Base;
 
 			return $result;
 		}
-		#11 значная дата от год назад от теперешнего времени
-		public static function dategenerate()
-		{
 
-			return $result;
+		public static function imagegenerate()
+		{
+			return "limb.jpg";
 		}
-		#генерируется ненастоящая ссылка латиницей
+		#генерируется ссылка латиницей
 		public static function linkgenerate($name) {
 
         $arrayTranscription = array("а" => "a", "б" => "b", "в" => "v", "г" => "g", "д" => "d", "е" => "e", "ё" => "e", "ж" => "sh", "з" => "z", "и" => "i", "й" => "i", "к" => "k", "л" => "l", "м" => "m", "н" => "n", "о" => "o", "п" => "p", "р" => "r", "с" => "s", "т" => "t", "у" => "u", "ф" => "f", "х" => "h", "ц" => "c", "ч" => "ch", "ш" => "sh", "щ" => "shh", "ъ" => "", "ы" => "y", "ь" => "", "э" => "a", "ю" => "ua", "я" => "ya", "," => "_", "." => "_", ":" => "_", ";" => "_", ";" => "_", " " => "_", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5", "6" => "6", "7" => "7", "8" => "8", "9" => "9", "a" => "a", "b" => "b", "c" => "c", "d" => "d", "e" => "e", "f" => "f", "g" => "g", "h" => "h", "i" => "i", "j" => "j", "k" => "k", "l" => "l", "m" => "m", "n" => "n", "o" => "o", "p" => "p", "r" => "r", "s" => "s", "t" => "t", "u" => "u", "v" => "v", "w" => "w", "x" => "x", "y" => "y", "z" => "z");
@@ -180,6 +181,17 @@ use limb\app\base as Base;
 			$arraysymbol = ["q","w","e","r","t","y","u","i","o","p","l","k","j","h","g","f","d","s","a","z","x","c","v","b","n","m","Q","W","E","R","T","Y","U","I","O","P","L","K","J","H","G","F","D","S","A","Z","X","C","V","B","N","M","!","@","%","^","&","*"];
 			shuffle($arraysymbol);
 			for ($i=0; $i < $num; $i++) { 
+				$code .= $arraysymbol[$i];
+			}
+
+			return $code;
+		}
+		public static function nameLatinGenerate($num)
+		{
+			$code = "";
+			$arraysymbol = ["q","w","e","r","t","y","u","i","o","p","l","k","j","h","g","f","d","s","a","z","x","c","v","b","n","m","Q","W","E","R","T","Y","U","I","O","P","L","K","J","H","G","F","D","S","A","Z","X","C","V","B","N","M"];
+			shuffle($arraysymbol);
+			for ($i=0; $i < $num; $i++) {
 				$code .= $arraysymbol[$i];
 			}
 

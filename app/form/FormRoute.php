@@ -5,6 +5,8 @@ namespace limb\app\form;
 
 use limb\app\worker as Worker;
 use limb\app\base\control as Control;
+use limb\app\modules\auth as Auth;
+
 require "../../autoload.php";
 
 	class FormRoute extends FormBase
@@ -15,8 +17,26 @@ require "../../autoload.php";
 		function __construct($name_form, $data)
 		{
 			parent::__construct($data);
+
+			if(!isset($_SESSION)) session_start();
+
+			if($this -> controlHtml == 2){
+				if(isset($data['code']) && isset($_SESSION['csrf'])){
+					$csrf = $_SESSION['csrf'];
+					unset($_SESSION['csrf']);
+					$csrf_site = $this -> data['code'];
+					if($csrf == $csrf_site)
+					{
+						$this -> routeF($name_form);
+					}
+				}
+			}
+			else
+			{
+				$this -> routeF($name_form);
+			}
+
 			
-			$this -> routeF($name_form);
 		}
 
 		private function routeF($name_form)
@@ -63,6 +83,42 @@ require "../../autoload.php";
 					$this -> result .= $masterClass -> addTablePageCl();#возвращает успех или нет
 				}
 			}
+			elseif($name_form == "add_article")
+			{
+				$this -> result = $this -> addArticle();
+
+			}
+			elseif($name_form == "red_menu")
+			{
+				$this -> result = $this -> redMenu();
+			}
+			elseif($name_form == "red_article")
+			{
+				$this -> result = $this -> redArticle();
+
+			}
+			elseif($name_form == "add_commentary")
+			{
+				$this -> result = $this -> addCommentary();
+			}
+
+			elseif($name_form == 'reg')
+			{
+				$reg = new Auth\AuthPage(false);
+				$this -> result = $reg -> newUser($this -> data);
+			}
+			elseif($name_form == 'auth')
+			{
+				$reg = new Auth\AuthPage(false);
+				$this -> result = $reg -> AuthUser($this -> data);
+			}
+			elseif($name_form == 'newpassword')
+			{
+				$reg = new Auth\AuthPage(false);
+				$this -> result = $reg -> NewPasswordOnPost($this -> data);
+			}
+
+
 		}
 
 
@@ -75,11 +131,21 @@ require "../../autoload.php";
 	
 	if(isset($_POST))
 	{
-		$fRoute = new FormRoute($_POST["nameForm"], $_POST);//вход данных и их обработка
+		if(count($_FILES) !== 0)
+		{
+			$ff = new FormFile($_FILES);
+			$names = $ff -> getNames();
+			$post_files = array_merge($names, $_POST);
+		}
+		else{
+			$post_files = $_POST;
+		}
+		$fRoute = new FormRoute($_POST["nameForm"], $post_files);//вход данных и их обработка
 		session_start();
 		$_SESSION["message"] = $fRoute -> result();
 		
 		header('Location: '.$_SERVER['HTTP_REFERER']);
+		exit();
 	}
 
 ?>

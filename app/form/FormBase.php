@@ -21,10 +21,31 @@ use limb\app\base as Base;
 	{	
 		public $ini_new;//перезаписанный массив
 		public $data;//массив данных полученный через форму
+		public $ex = ["connect", "importBD", "newFields", "newTable", "redTable"];#исключения для htmlspecialchar
+		protected $controlHtml;
 
 		function __construct($data)
 		{
-			$this -> data = $data;
+			$this -> data = [];
+			$this -> controlHtml = 2;
+			for($i = 0; $i < count($this -> ex); $i++)
+			{
+				if($data["nameForm"] == $this -> ex[$i]) $this -> controlHtml += 1;
+			}
+			if($this -> controlHtml == 2)
+			{
+				foreach ($data as $key => $value) {
+					if($key != "code")
+						$this -> data[$key] = htmlspecialchars($value, ENT_QUOTES);
+					else
+						$this -> data[$key] = $value;
+				}
+			}
+			else
+			{
+				$this -> data = $data;
+			}
+
 		}
 
 		public function tab_newIni()
@@ -42,6 +63,31 @@ use limb\app\base as Base;
 			$class_name = 'limb\\code\\site\\'.ucfirst(str_replace($ini["fornameDB"], "", $table_name))."Table";
 			$obj = $class_name::insertFieldLimb($this -> data['count_fields']);
 		}
+		public function addArticle()
+		{
+
+			$res = \limb\code\site\ArticleTable::addArticle($this -> data);
+			return $res;
+
+		}
+		public function redMenu()
+		{
+
+			$res = \limb\code\site\MenuTable::redMenu($this -> data);
+			return $res;
+		}
+		public function redArticle()
+		{
+
+			$res = \limb\code\site\ArticleTable::redArticle($this -> data);
+			return $res;
+		}
+		public function addCommentary()
+		{
+
+			$res = \limb\code\site\CommentsTable::addCommentary($this -> data);
+			return $res;
+		}
 		public function ImportBD()
 		{
 			$code = $this -> data['file_sql'];
@@ -57,6 +103,14 @@ use limb\app\base as Base;
 				$result = "При импорте произошла ошибка";
 			}
 			return $result;
+		}
+		public static function csrf()
+		{
+			if(!isset($_SESSION))
+				session_start();
+			$_SESSION["csrf"] = Base\control\Generate::codegenerate(30);
+
+			return "<input type = 'text' value = '".$_SESSION['csrf']."' name = 'code' style='display:none;'/>";
 		}
 	}
 ?>

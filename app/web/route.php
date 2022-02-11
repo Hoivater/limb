@@ -50,10 +50,8 @@ class Route
 				$_SESSION['numpage'] = 1;
 			}
 		}
-		echo "@";
-		$this -> routeLimb();#Limb работа с таблицами
-		// $this -> routePublicLimb(); #ваш проект
-
+		// $this -> routeLimb();#Limb работа с таблицами
+		$this -> routePublicLimb(); #ваш проект
 	}
 
 	private function routePublicLimb()
@@ -62,69 +60,92 @@ class Route
 
 		if(count($route_arr) >= 1)
 		{
-				if($route_arr[0] == "administrator" && $this -> auth == "admin")
-				{
-					if(isset($route_arr[1])){
-						if($route_arr[1] == "new_article"){
-							#страница на которой создается новая статья
-							$html = new LimbSite\ArticlePage();
-							$html -> AddArticleAdminPage();
-						}
-						elseif($route_arr[1] == "order")
-						{
-							if(isset($route_arr[2]))
-							{
-								#code
-							}
-							else
-							{
-								#code
-							}
-						}
-						elseif($route_arr[1] == "new_project")
-						{
-							#code
-						}
-						else
-						{
-							#code
-						}
-					}
-
-				}
-				elseif($route_arr[0] == "feedback")
-				{
-					#code				
-				}
-				elseif($route_arr[0] == "basket")
-				{
-					#code				
-				}
-				elseif($route_arr[0] == "articles")
+				if($route_arr[0] == "article")
 				{
 					if(isset($route_arr[1]))
 					{
-						#code
+						$html = new LimbSite\ArticlePage();
+						$html -> Page($route_arr[1]);
 					}
-					else
-					{
-						#code
-					}			
 				}
-
-				elseif($route_arr[0] == "product")
+				elseif($route_arr[0] == "category")
 				{
 					if(isset($route_arr[1]))
 					{
-						#code
+						$html = new LimbSite\MenuPage();
+						$html -> Page($route_arr[1]);
+					}
+				}
+				#админка
+				elseif($route_arr[0] == "redaction_article" && $this -> auth == "admin")
+				{
+					if(isset($route_arr[1]))
+					{
+						$html = new LimbSite\aNewArticlePage($route_arr[1]);
+					}
+				}
+				elseif($route_arr[0] == "add_article" && $this -> auth == "admin")
+				{
+					$html = new LimbSite\aNewArticlePage();
+				}
+				elseif($route_arr[0] == "commentary" && $this -> auth == "admin")
+				{
+					$html = new LimbSite\CommentsPage();
+				}
+				elseif($route_arr[0] == "redaction_menu" && $this -> auth == "admin")
+				{
+					$html = new LimbSite\aRedactionMenuPage();
+				}
+				elseif($route_arr[0] == "galery" && $this -> auth == "admin")
+				{
+					$html = new LimbSite\aGaleryPage();
+				}
+				elseif($route_arr[0] == "maps_article" && $this -> auth == "admin")
+				{
+					if(isset($route_arr[1]))
+					{
+						$html = new LimbSite\mapsArticlePage($route_arr[1]);
+
 					}
 					else
 					{
-						#code
-					}				
+						$html = new LimbSite\mapsArticlePage();
+					}
 				}
-
+				elseif($route_arr[0] == "delete" && $this -> auth == "admin")
+				{
+					if(isset($route_arr[1]))
+					{
+						LimbSite\ArticleTable::delete_article($route_arr[1]);
+						header('Location: '.$_SERVER['HTTP_REFERER']);
+						exit();
+					}
+				}
+				elseif($route_arr[0] == "delete_comment" && $this -> auth == "admin")
+				{
+					if(isset($route_arr[1]))
+					{
+						LimbSite\CommentsTable::delete_commentary($route_arr[1]);
+						header('Location: '.$_SERVER['HTTP_REFERER']);
+						exit();
+					}
+				}
+				elseif($route_arr[0] == "delete_image" && $this -> auth == "admin")
+				{
+					if(isset($route_arr[1]))
+					{
+						unlink(__DIR__."/../../resourse/visible/content/".$route_arr[1]);
+						header('Location: '.$_SERVER['HTTP_REFERER']);
+						exit();
+					}
+				}
 				#модуль регистрации
+				elseif($route_arr[0] == "destructauth")
+				{
+					setcookie("code", '', -1);
+					setcookie("email", '', -1);
+					header("Location:/");				
+				}
 				elseif($route_arr[0] == "registration")
 				{
 					$html = new Modules\Auth\AuthPage(false);

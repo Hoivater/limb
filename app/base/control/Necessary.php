@@ -7,6 +7,7 @@ use limb\app\base as Base;
 	{
 		public static function standartReplace($tmplt, $replace, $html)
 		{
+
 			return str_replace($tmplt, $replace, $html);
 		}
 		//имена одинаковые но не в том порядке (обязательно массивы)
@@ -21,7 +22,7 @@ use limb\app\base as Base;
 			foreach ($tmplt as $true_key) {
 				$true_key = str_replace('%', '', $true_key);
 				foreach ($replace as $key => $value) {
-					if($true_key == $key)
+					if(trim($true_key) == $key)
 					{
 						$sortReplace[] = $value;
 						$control = true;
@@ -34,6 +35,28 @@ use limb\app\base as Base;
 				}
 			}
 			return  self::standartReplace($tmplt, $sortReplace, $html);
+		}
+
+		public static function asortReplace2($tmplt, $replace, $html)
+		{
+			$sortReplace = [];//отсортированный массив $replace под $tmplt
+			$control = false;
+			for($i = 0; $i < count($replace); $i++) {
+
+				for ($j = 0; $j < count($tmplt); $j++) {
+					$true_key = trim(str_replace('%', '', $tmplt[$j]));
+					if(isset($replace[$i][$true_key]))
+					{
+						$sortReplace[$i][] = $replace[$i][$true_key];
+						$control = true;
+					}
+				}
+				if($control === false)
+				{
+					$sortReplace[] = "";
+				}
+			}
+			return  self::ReplaceRepeat($tmplt, $sortReplace, $html);
 		}
 
 		//выводит сравнение двух массивов в таблицу
@@ -57,6 +80,14 @@ use limb\app\base as Base;
 			echo "</tr></table>";
 		}
 
+		public static function ConvertDate($unix)
+		{
+			return date('d.m.Y', $unix);
+		}
+		public static function ConvertTime($unix)
+		{
+			return date('G:i:s d.m.Y', $unix);
+		}
 
 		//конвертация файла в текст формата Ini
 		public static function ConvertInIni($arr)
@@ -78,6 +109,9 @@ use limb\app\base as Base;
 			}
 			return $result;
 		}
+
+
+
 
 		public static function ToCodeSql($code)
 		{
